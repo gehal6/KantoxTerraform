@@ -31,7 +31,7 @@ variable "bucket_file_name" {
 variable "bucket_name" {
   description = "bucket name"
   type        = string
-  default     = "kantox-poc-bucket-2"
+  default     = "kantox-poc-bucket-v2"
 }
 
 variable "lambda_role_name" {
