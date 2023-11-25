@@ -44,3 +44,10 @@ variable "current_user_arn" {
   type        = string
   default     = "arn:aws:iam::362939590080:user/gehal6"
 }
+
+variable "event_bucket_name" {
+  description = "event bucket name"
+  type        = string
+  default     = "kantox-poc-bucket-event"
+}
+

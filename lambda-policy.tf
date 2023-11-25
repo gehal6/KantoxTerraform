@@ -16,6 +16,8 @@ resource "aws_iam_policy" "lambda_s3_policy" {
         "Resource" : [
           "${aws_s3_bucket.s3_encrypted.arn}",
           "${aws_s3_bucket.s3_encrypted.arn}/*",
+          "${aws_s3_bucket.s3_event_trigger.arn}",
+          "${aws_s3_bucket.s3_event_trigger.arn}/*",
         ]
       }
     ]

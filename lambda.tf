@@ -3,6 +3,7 @@ resource "aws_iam_role" "iam_lambda" {
 
   managed_policy_arns = [
     aws_iam_policy.lambda_s3_policy.arn,
+    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
   ]
 
   assume_role_policy = <<EOF
