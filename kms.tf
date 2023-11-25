@@ -13,11 +13,14 @@ module "kms" {
   key_users          = []
 
   # each key can have multiple aliases with different permissions
-  aliases                 = []
+  aliases                 = ["kantox/encrypted-bucket"]
   aliases_use_name_prefix = true
 
   # assign grants to AWS resource to use this Key
   grants = {
-    # keep reading
+    lambda_doc_convert = {
+      grantee_principal = aws_iam_role.iam_lambda.arn
+      operations        = ["Encrypt", "Decrypt", "GenerateDataKey"]
+    }
   }
 }

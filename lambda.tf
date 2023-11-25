@@ -1,5 +1,5 @@
 resource "aws_iam_role" "iam_lambda" {
-  name = "lambda-role"
+  name = var.lambda_role_name
 
   managed_policy_arns = [
     aws_iam_policy.lambda_s3_policy.arn,

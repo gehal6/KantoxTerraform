@@ -7,7 +7,7 @@ variable "region" {
 variable "function_name" {
   description = "The Lambda Function name"
   type        = string
-  default     = "kantox-lambda"
+  default     = "kantox-lambda-poc"
 }
 
 variable "python_version" {
@@ -32,4 +32,15 @@ variable "bucket_name" {
   description = "bucket name"
   type        = string
   default     = "kantox-poc-bucket"
+}
+
+variable "lambda_role_name" {
+  description = "lambda role name"
+  type        = string
+  default     = "lambda-role"
+}
+variable "current_user_arn" {
+  description = "current user name"
+  type        = string
+  default     = "arn:aws:iam::362939590080:user/gehal6"
 }
