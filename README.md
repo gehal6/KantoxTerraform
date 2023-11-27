@@ -15,25 +15,25 @@ This code will create the following objects:
 2. run terraform plan
 3. run terraform apply.
 4. you will face an error "KMSInvalidStateException" for the creation of the KMS CMK as we don't have the key here in the code.
-5. you will need to follow these steps to create it
-     a. Go to AWS Console — Key Management Service,you have your key created, but with the status saying Pending Import.
-     b. in the tab Key Material we are going to download the Wrapping key and import token.
-     c. unzip the downloaded archive, which contains a Readme file, wrappingKey_ file which serves as a public key, and the importToken_ which is needed later for uploading.
-     d. generate Key material using OpenSSL, first we need to generate a random private key — this creates a file PlaintextKeyMaterial.bin
-        -->  openssl rand -out PlaintextKeyMaterial.bin 32
-     e. run openssl pkeyutl command to generate Material Key, if it didn't work on your server then run it inside docker container
-        -->  openssl pkeyutl \
-             -in PlaintextKeyMaterial.bin \
-             -out EncryptedKeyMaterial.bin \
-             -inkey NAME_OF_THE_WRAPPING_KEY_FILE \
-             -keyform DER \
-             -pubin \
-             -encrypt \
-             -pkeyopt rsa_padding_mode:oaep \
-             -pkeyopt rsa_oaep_md:sha256
-     f. Upload the EncryptedKeyMaterial.bin and the importToken_ to the KMS.
-6. run terraform apply again and everything should be fine
-7. you can now upload JSON files to the notification bucket and check the DB bucket being updated.  
+5. you will need to follow these steps to create it <br />
+     a. Go to AWS Console — Key Management Service,you have your key created, but with the status saying Pending Import. <br />
+     b. in the tab Key Material we are going to download the Wrapping key and import token. <br />
+     c. unzip the downloaded archive, which contains a Readme file, wrappingKey_ file which serves as a public key, and the importToken_ which is needed later for uploading. <br />
+     d. generate Key material using OpenSSL, first we need to generate a random private key — this creates a file PlaintextKeyMaterial.bin <br />
+        -->  openssl rand -out PlaintextKeyMaterial.bin 32 <br />
+     e. run openssl pkeyutl command to generate Material Key, if it didn't work on your server then run it inside docker container <br />
+        -->  openssl pkeyutl \ <br />
+             -in PlaintextKeyMaterial.bin \ <br />
+             -out EncryptedKeyMaterial.bin \ <br />
+             -inkey NAME_OF_THE_WRAPPING_KEY_FILE \ <br />
+             -keyform DER \ <br />
+             -pubin \ <br />
+             -encrypt \ <br />
+             -pkeyopt rsa_padding_mode:oaep \ <br />
+             -pkeyopt rsa_oaep_md:sha256 <br />
+     f. Upload the EncryptedKeyMaterial.bin and the importToken_ to the KMS. <br />
+7. run terraform apply again and everything should be fine.
+8. you can now upload JSON files to the notification bucket and check the DB bucket being updated.  
    
    
 
